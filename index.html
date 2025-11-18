@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Message for The Prisoners 🗝️</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Courier New', monospace;
+      background: linear-gradient(to bottom right, #111, #333);
+      color: #e0e0e0;
+      margin: 0;
+      padding: 20px;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    h1 {
+      font-family: 'Impact', sans-serif;
+      text-align: center;
+      color: #ff6f61;
+      font-size: 2.2em;
+      margin-bottom: 20px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    #start-button {
+      display: block;
+      margin: 40px auto;
+      padding: 14px 28px;
+      font-size: 18px;
+      background-color: #444;
+      color: white;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+      transition: background-color 0.3s;
+    }
+
+    #start-button:hover {
+      background-color: #222;
+    }
+
+    #message-container {
+      max-width: 900px;
+      margin: 0 auto 60px;
+      padding: 24px;
+      background-color: rgba(20, 20, 20, 0.95);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.8);
+      border-radius: 20px;
+      display: none;
+      text-align: center;
+      opacity: 0;
+      transition: opacity 1.5s ease-in-out;
+      animation: glow 3s infinite alternate;
+    }
+
+    @keyframes glow {
+      from { box-shadow: 0 0 10px rgba(255,111,97,0.4); }
+      to { box-shadow: 0 0 20px rgba(255,111,97,0.8); }
+    }
+
+    #typewriter {
+      font-size: 1.1em;
+      line-height: 1.8;
+      white-space: pre-line;
+      border-right: 2px solid #ff6f61;
+      overflow: hidden;
+      animation: blink 0.75s step-end infinite;
+      min-height: 400px;
+      text-align: left;
+      padding: 0 10px;
+    }
+
+    @keyframes blink {
+      50% { border-color: transparent; }
+    }
+
+    .signature {
+      font-family: 'Courier New', monospace;
+      text-align: right;
+      margin-top: 40px;
+      color: #ff6f61;
+      font-size: 1.3em;
+    }
+
+    #back-button {
+      display: inline-block;
+      margin-top: 30px;
+      padding: 12px 24px;
+      font-size: 16px;
+      background-color: #ff6f61;
+      color: white;
+      text-decoration: none;
+      border-radius: 30px;
+      box-shadow: 0 0 10px rgba(255,111,97,0.4);
+      transition: background-color 0.3s;
+    }
+    #back-button:hover {
+      background-color: #c2185b;
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 1.8em;
+      }
+
+      #typewriter {
+        font-size: 1em;
+      }
+
+      .signature {
+        font-size: 1.1em;
+      }
+    }
+
+    /* Prison bars effect */
+    .bar {
+      position: absolute;
+      width: 6px;
+      height: 100%;
+      background: rgba(255,255,255,0.08);
+      animation: fadeIn 2s forwards;
+    }
+
+    @keyframes fadeIn {
+      to { opacity: 0.6; }
+    }
+  </style>
+</head>
+<body>
+  <audio id="bg-music" loop>
+    <source src="tp1.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+
+  <!-- Bars across the screen -->
+  <div class="bar" style="left:12%;"></div>
+  <div class="bar" style="left:28%;"></div>
+  <div class="bar" style="left:44%;"></div>
+  <div class="bar" style="left:60%;"></div>
+  <div class="bar" style="left:76%;"></div>
+  <div class="bar" style="left:92%;"></div>
+
+  <button id="start-button" onclick="startSite()">Unlock the Message 🗝️</button>
+
+  <div id="message-container">
+    <h1>⛓ The Prisoners ⛓</h1>
+    <div id="typewriter"></div>
+    <div class="signature">— Fundador</div>
+
+    <!-- Back Button -->
+    <a href="index.html" id="back-button">← Back to Index</a>
+  </div>
+
+  <script>
+    const fullMessage = `
+Magandang araw, pamilya. Nais ko sanang ipaalam sa inyo na pansamantala akong hindi magiging aktibo sa Litmatch. Sa ngayon, kailangan kong ituon ang aking oras at lakas sa ilang mahahalagang responsibilidad sa labas ng app. Huwag po sana ninyong isipin na nakakalimot ako—napakahalaga sa akin ng ugnayan at samahan na nabuo natin dito.
+
+Bagama’t hindi ako makakadalo sa ating mga pag-uusap gaya ng dati, dala ko pa rin ang mga magagandang alaala at suporta na ibinahagi ninyo sa akin. Umaasa ako na patuloy ninyong palalakasin ang diwa ng pagiging pamilya at magbibigay ng inspirasyon sa isa’t isa.
+
+Kapag dumating ang tamang panahon, muli akong makikipag-ugnayan sa inyo. Hangad ko ang kapayapaan, lakas ng loob, at positibong kaisipan para sa lahat hanggang sa muli nating pagkikita. Maraming salamat sa inyong pang-unawa.
+`;
+
+    function typeText(text, index = 0) {
+      if (index <= text.length) {
+        document.getElementById("typewriter").innerText = text.slice(0, index);
+        const delay = 60 + Math.random() * 60;
+        setTimeout(() => typeText(text, index + 1), delay);
+      }
+    }
+
+    function startSite() {
+      const music = document.getElementById('bg-music');
+      const message = document.getElementById('message-container');
+      const button = document.getElementById('start-button');
+
+      music.play().then(() => {
+        message.style.display = 'block';
+        setTimeout(() => {
+          message.style.opacity = '1';
+        }, 100);
+
+        button.style.display = 'none';
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+
+        // Delay before typing starts (40 seconds = 40000 ms)
+        setTimeout(() => {
+          typeText(fullMessage);
+        }, 40000);
+      }).catch(() => {
+        alert("Tap anywhere to enable music 🗝️");
+        document.body.addEventListener('click', () => music.play(), { once: true });
+      });
+    }
+  </script>
+</body>
+</html>
